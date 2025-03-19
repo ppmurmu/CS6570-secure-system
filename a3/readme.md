@@ -1,7 +1,7 @@
 
-#Assignment-3: ROP Chain
+## Assignment-3: ROP Chain
 
-## Acknowledgments
+# Acknowledgement
 1. ROP chain problem on multiplication How to print the register value. 
    https://github.com/Neelrayal/CS6570-SecureSystemEngineering/tree/main/A3
 2. Visualizing the stack in ROP chaining.
