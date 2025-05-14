@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://messycoupons-1-web.ssectf.kctf.cloud/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>🍽️ Messy Coupons</title>
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --success: #388E3C;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 2rem;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      color: #555;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    #amount_display {
+      font-size: 1.5rem;
+      color: var(--success);
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🍴 Buy Messy Coupons</h1>
+    <form action="https://messycoupons-1-web.ssectf.kctf.cloud/purchase" method="POST" onsubmit="return validateDates()">
+      <label for="from_date">📅 From Date:</label>
+      <input type="date" id="from_date" name="from_date" required="" onchange="updateAmount()">
+
+      <label for="to_date">📅 To Date:</label>
+      <input type="date" id="to_date" name="to_date" required="" onchange="updateAmount()">
+
+      <label for="mess">🏠 Select Mess:</label>
+      <select id="mess" name="mess" onchange="updateAmount()">
+        <option value="Mess-1">Mess 1 (₹100/day)</option>
+        <option value="Mess-2">Mess 2 (₹150/day)</option>
+      </select>
+
+      <div id="amount_display">₹0</div>
+      <input type="hidden" id="amount" name="amount">
+
+      <button type="submit">🛒 Proceed to Payment</button>
+    </form>
+  </div>
+
+  <script>
+    function updateAmount() {
+      const fromDate = document.getElementById('from_date').value;
+      const toDate = document.getElementById('to_date').value;
+      const mess = document.getElementById('mess').value;
+
+      if (fromDate && toDate) {
+        const diffDays = Math.floor((new Date(toDate) - new Date(fromDate)) / 86400000) + 1;
+        if (diffDays < 0) return alert("❌ To date must be after From date!");
+
+        const rate = mess === 'mess-2' ? 150 : 100;
+        const amount = diffDays * rate;
+        document.getElementById('amount_display').textContent = `₹${amount}`;
+        document.getElementById('amount').value = amount;
+      }
+    }
+  </script>
+
+
+</body></html>
